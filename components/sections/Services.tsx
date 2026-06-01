@@ -46,7 +46,7 @@ export function Services({ data = [] }: { data?: any[] }) {
           {hoveredIndex !== null && (
             <motion.img
               key={hoveredIndex}
-              src={activeServices[hoveredIndex]?.image || SERVICES[0].image}
+              src={activeServices[hoveredIndex]?.cover_image || activeServices[hoveredIndex]?.image || SERVICES[hoveredIndex % SERVICES.length].image}
               initial={{ opacity: 0, scale: 1.1 }}
               animate={{ opacity: 0.3, scale: 1 }}
               exit={{ opacity: 0 }}

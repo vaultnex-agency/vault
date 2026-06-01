@@ -89,7 +89,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           className="absolute -inset-[15%] w-[130%] h-[130%]"
         >
           <img 
-            src={project.image} 
+            src={project.cover_image || project.image || PROJECTS[index % PROJECTS.length].image} 
             alt={project.title}
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out"
           />
