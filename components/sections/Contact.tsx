@@ -20,8 +20,18 @@ const SERVICES_LIST = [
 
 export function Contact({ data = {} }: { data?: any }) {
   const activeEmail = data?.email || EMAIL
-  const activePhone = data?.phone || PHONE_NUMBERS[0]
-  const activeWhatsApp = data?.phone ? [data.phone] : WHATSAPP_NUMBERS
+  const activePhone = Array.isArray(data?.phone) ? data.phone[0] : (data?.phone || PHONE_NUMBERS[0])
+  
+  let activeWhatsApp = WHATSAPP_NUMBERS
+  if (Array.isArray(data?.whatsapp) && data.whatsapp.length > 0) {
+    activeWhatsApp = data.whatsapp
+  } else if (data?.whatsapp) {
+    activeWhatsApp = [data.whatsapp]
+  } else if (Array.isArray(data?.phone) && data.phone.length > 0) {
+    activeWhatsApp = data.phone
+  } else if (data?.phone) {
+    activeWhatsApp = [data.phone]
+  }
   const [form, setForm] = useState({
     name: '',
     email: '',
